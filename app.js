@@ -8,7 +8,12 @@ var bodyParser = require('body-parser');
 var index = require('./routes/index');
 var users = require('./routes/users');
 
+const auth = require('./server/authentication')
+
 var app = express();
+
+const config = require( './server/config' )
+const _config = config.readConfig()
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
@@ -27,6 +32,10 @@ app.use(require('node-sass-middleware')({
   sourceMap: true
 }));
 app.use(express.static(path.join(__dirname, 'public')));
+
+if (!_config.auth.isDisabled) {
+  auth.init(app, _config)
+}
 
 app.use('/', index);
 app.use('/users', users);

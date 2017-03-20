@@ -1,0 +1,7 @@
+{
+  "env": "production",
+  "host": "https://coach-queue.apps.learnersguild.org",
+  "auth": {
+    "IDM_BASE_URL": "https://idm.learnersguild.org"
+  }
+}
